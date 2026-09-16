@@ -620,7 +620,7 @@ if (auditForm) {
 
             formData.set(
                 "form-name",
-                "local-visibility-audit"
+                "Local-Visibility-Audit"
             );
 
 
