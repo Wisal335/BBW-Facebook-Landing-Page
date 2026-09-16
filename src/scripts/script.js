@@ -552,166 +552,117 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+/* =====================================================
+   NETLIFY FORM SUBMISSION
+===================================================== */
 
-    /* =====================================================
-       FORM SUBMISSION
-       
-       IMPORTANT:
-       - No Calendly.
-       - If data-endpoint is supplied, the form attempts
-         a POST request.
-       - If no endpoint exists, it displays a transparent
-         development-ready success state.
-    ===================================================== */
+if (auditForm) {
 
-    if (auditForm) {
+    auditForm.addEventListener(
+        "submit",
+        async (event) => {
 
-        auditForm.addEventListener(
-            "submit",
-            async (event) => {
-
-                event.preventDefault();
+            /*
+               Prevent normal browser form submission.
+               We will send the form to Netlify using fetch.
+            */
+            event.preventDefault();
 
 
-                const honeypot =
-                    document.getElementById(
-                        "website-check"
+            /* =============================================
+               NETLIFY HONEYPOT
+            ============================================= */
+
+            const honeypot =
+                document.getElementById("bot-field");
+
+            if (
+                honeypot &&
+                honeypot.value.trim() !== ""
+            ) {
+                return;
+            }
+
+
+            /* =============================================
+               VALIDATE FORM
+            ============================================= */
+
+            if (!validateForm()) {
+                return;
+            }
+
+
+            /* =============================================
+               LOADING STATE
+            ============================================= */
+
+            const submitText =
+                formSubmit?.querySelector(
+                    ".submit-text"
+                );
+
+            if (formSubmit) {
+                formSubmit.classList.add("loading");
+                formSubmit.disabled = true;
+            }
+
+            if (submitText) {
+                submitText.textContent =
+                    "Submitting...";
+            }
+
+
+            /* =============================================
+               PREPARE FORM DATA
+            ============================================= */
+
+            const formData =
+                new FormData(auditForm);
+
+            /*
+               Make sure Netlify knows which form
+               is being submitted.
+            */
+            formData.set(
+                "form-name",
+                "local-visibility-audit"
+            );
+
+
+            /* =============================================
+               SUBMIT TO NETLIFY
+            ============================================= */
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/",
+                        {
+                            method: "POST",
+
+                            /*
+                               Netlify Forms expects
+                               URL-encoded form data.
+                            */
+                            body: new URLSearchParams(
+                                formData
+                            ),
+
+                            headers: {
+                                "Content-Type":
+                                    "application/x-www-form-urlencoded"
+                            }
+                        }
                     );
 
 
-                if (
-                    honeypot &&
-                    honeypot.value.trim() !== ""
-                ) {
+                if (!response.ok) {
 
-                    return;
-
-                }
-
-
-                if (!validateForm()) {
-
-                    return;
-
-                }
-
-
-                const endpoint =
-                    auditForm.dataset.endpoint?.trim();
-
-
-                const submitText =
-                    formSubmit?.querySelector(
-                        ".submit-text"
+                    throw new Error(
+                        "Netlify form submission failed"
                     );
-
-
-                if (formSubmit) {
-
-                    formSubmit.classList.add(
-                        "loading"
-                    );
-
-                }
-
-
-                if (submitText) {
-
-                    submitText.textContent =
-                        "Preparing your request...";
-
-                }
-
-
-                /*
-                   Small delay gives the interface a
-                   polished response without requiring
-                   an external library.
-                */
-
-                await new Promise((resolve) => {
-
-                    setTimeout(
-                        resolve,
-                        650
-                    );
-
-                });
-
-
-                /*
-                   If a real backend endpoint has been
-                   configured, send the form data.
-                */
-
-                if (endpoint) {
-
-                    try {
-
-                        const formData =
-                            new FormData(
-                                auditForm
-                            );
-
-
-                        const response =
-                            await fetch(
-                                endpoint,
-                                {
-                                    method: "POST",
-                                    body: formData,
-                                    headers: {
-                                        "Accept":
-                                            "application/json"
-                                    }
-                                }
-                            );
-
-
-                        if (!response.ok) {
-
-                            throw new Error(
-                                "Submission failed"
-                            );
-
-                        }
-
-                    } catch (error) {
-
-                        console.error(
-                            "Audit form submission error:",
-                            error
-                        );
-
-
-                        if (formError) {
-
-                            formError.textContent =
-                                "We could not send the request right now. Please try again.";
-
-                        }
-
-
-                        if (formSubmit) {
-
-                            formSubmit.classList.remove(
-                                "loading"
-                            );
-
-                        }
-
-
-                        if (submitText) {
-
-                            submitText.textContent =
-                                "Request My Free Audit";
-
-                        }
-
-
-                        return;
-
-                    }
 
                 }
 
@@ -735,16 +686,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
+                /*
+                   Hide the form and show
+                   the success message.
+                */
                 auditForm.hidden = true;
 
                 formSuccess.hidden = false;
 
+
+                /* =========================================
+                   RESET BUTTON STATE
+                ========================================= */
 
                 if (formSubmit) {
 
                     formSubmit.classList.remove(
                         "loading"
                     );
+
+                    formSubmit.disabled = false;
 
                 }
 
@@ -757,16 +718,64 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
+                /* =========================================
+                   SCROLL TO SUCCESS MESSAGE
+                ========================================= */
+
                 formSuccess.scrollIntoView({
                     behavior: "smooth",
                     block: "center"
                 });
 
+
+            } catch (error) {
+
+                console.error(
+                    "Netlify form submission error:",
+                    error
+                );
+
+
+                /* =========================================
+                   SHOW ERROR
+                ========================================= */
+
+                if (formError) {
+
+                    formError.textContent =
+                        "We could not send your request right now. Please try again.";
+
+                }
+
+
+                /* =========================================
+                   RESTORE BUTTON
+                ========================================= */
+
+                if (formSubmit) {
+
+                    formSubmit.classList.remove(
+                        "loading"
+                    );
+
+                    formSubmit.disabled = false;
+
+                }
+
+
+                if (submitText) {
+
+                    submitText.textContent =
+                        "Request My Free Audit";
+
+                }
+
             }
-        );
 
-    }
+        }
+    );
 
+}
 
     /* =====================================================
        RESET SUCCESS STATE

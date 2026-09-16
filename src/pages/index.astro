@@ -1,51 +1,12 @@
 ---
 import "../styles/style.css";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-<head>
-
-    <meta charset="UTF-8" />
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    />
-
-    <meta
-        name="theme-color"
-        content="#07111f"
-    />
-
-    <meta
-        name="description"
-        content="Turn local reviews, search visibility and community trust into a stronger pipeline. Book a free Local Visibility & Search Audit with Big Brain Way."
-    />
-
-    <meta
-        property="og:title"
-        content="Local Trust & Proof | Big Brain Way"
-    />
-
-    <meta
-        property="og:description"
-        content="See how your business looks to nearby customers and discover where local visibility and reputation may be leaking."
-    />
-
-    <meta
-        property="og:type"
-        content="website"
-    />
-
-    <title>
-        Local Trust & Proof | Free Local Visibility & Search Audit | Big Brain Way
-    </title>
-
-</head>
-
-
-<body>
+<Layout
+    title="Local Trust & Proof | Free Local Visibility & Search Audit | Big Brain Way"
+description="Turn local reviews, search visibility and community trust into a stronger pipeline. Book a free Local Visibility & Search Audit with Big Brain Way.">
+ 
 
 <!-- =========================================================
      SCROLL PROGRESS
@@ -1718,11 +1679,7 @@ import "../styles/style.css";
         </div>
 
 
-        <!-- =================================================
-             CUSTOM ON-PAGE BOOKING FORM
-             No Calendly.
-             Connect data-endpoint when backend is available.
-        ================================================== -->
+        <!--CUSTOM ON-PAGE BOOKING FORM No Calendly. Submitted through Netlify Forms.-->
 
         <div class="booking-card reveal">
 
@@ -1742,43 +1699,43 @@ import "../styles/style.css";
 
 
                 <div class="booking-lock">
-                    <span>●</span>
+                    <span>● </span>
                     Private request
                 </div>
 
             </div>
 
 
-            <form
-                id="auditForm"
-                class="audit-form"
-                data-endpoint=""
-                novalidate
+           <form
+            id="auditForm"
+            name="Local-Visibility-Audit"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
             >
+    <input
+        type="hidden"
+        name="form-name"
+        value="Local-Visibility-Audit"
+    />
 
+    <!-- Netlify spam protection -->
+    <div
+        class="honeypot"
+        aria-hidden="true"
+    >
+        <label for="bot-field">
+            Leave this field empty
+        </label>
 
-                <!-- Honeypot -->
-
-                <div
-                    class="honeypot"
-                    aria-hidden="true"
-                >
-
-                    <label for="website-check">
-                        Leave this field empty
-                    </label>
-
-                    <input
-                        type="text"
-                        id="website-check"
-                        name="website_check"
-                        tabindex="-1"
-                        autocomplete="off"
-                    />
-
-                </div>
-
-
+        <input
+            type="text"
+            id="bot-field"
+            name="bot-field"
+            tabindex="-1"
+            autocomplete="off"
+        />
+    </div>
                 <div class="form-grid">
 
 
@@ -2040,11 +1997,12 @@ import "../styles/style.css";
 
                 <label class="consent-row">
 
-                    <input
-                        type="checkbox"
-                        id="consent"
-                        name="consent"
-                        required
+                   <input
+                    type="checkbox"
+                    id="consent"
+                    name="consent"
+                    value="yes"
+                    required
                     />
 
                     <span class="custom-checkbox"></span>
@@ -2104,40 +2062,39 @@ import "../styles/style.css";
             ================================================== -->
 
             <div
-                class="form-success"
-                id="formSuccess"
-                aria-live="polite"
-                hidden
-            >
+    class="form-success"
+    id="formSuccess"
+    aria-live="polite"
+    hidden
+>
 
-                <div class="success-icon">
-                    ✓
-                </div>
+    <div class="success-icon">
+        ✓
+    </div>
 
-                <span class="success-kicker">
-                    REQUEST READY
-                </span>
+    <span class="success-kicker">
+        REQUEST RECEIVED
+    </span>
 
-                <h3>
-                    Thanks, <span id="successName">there</span>.
-                </h3>
+    <h3>
+        Thanks, <span id="successName">there</span>.
+    </h3>
 
-                <p>
-                    Your audit request has been prepared successfully.
-                    Connect this form to your CRM or scheduling endpoint
-                    before launch to route live submissions to your team.
-                </p>
+    <p>
+        Your free Local Visibility &amp; Search Audit request
+        has been received. Our team will review your details
+        and follow up using the contact information you provided.
+    </p>
 
-                <button
-                    type="button"
-                    class="success-reset"
-                    id="successReset"
-                >
-                    Submit another request
-                </button>
+    <button
+        type="button"
+        class="success-reset"
+        id="successReset"
+    >
+        Submit another request
+    </button>
 
-            </div>
-
+</div>
         </div>
 
     </div>
@@ -2235,47 +2192,52 @@ import "../styles/style.css";
 
 </main>
 
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
+<!-- FOOTER -->
 <footer class="site-footer">
-
     <div class="footer-inner">
 
         <div class="footer-brand">
-
             <img
                 src="/image/BBW%20Logo.png"
                 alt="Big Brain Way"
+                class="footer-logo"
             />
 
-            <span>
-                Brand engineering for growing businesses.
-            </span>
+            <p class="footer-tagline">
+                Turn local visibility, reputation, and customer trust
+                into a stronger pipeline.
+            </p>
+        </div>
+
+        <div class="footer-cta">
+            <span class="footer-eyebrow">READY TO BE FOUND?</span>
+
+            <h3>
+                See how your local presence is performing.
+            </h3>
+
 
         </div>
 
-
         <div class="footer-meta">
+            <p>
+                Free Local Visibility &amp; Search Audit
+            </p>
 
-            <span>
-                Local Trust & Proof
-            </span>
-
-            <span>
-                © {new Date().getFullYear()} Big Brain Way
-            </span>
-
+            <p class="footer-note">
+                No spam. No obligation. Just clarity.
+            </p>
         </div>
 
     </div>
 
+    <div class="footer-bottom">
+        <p>
+            © {new Date().getFullYear()} Big Brain Way. All rights reserved.
+        </p>
+
+    </div>
 </footer>
-
-
 
 <!-- =========================================================
      MOBILE STICKY CTA
@@ -2331,5 +2293,4 @@ import "../styles/style.css";
 import "../scripts/script.js";
 </script>
 
-</body>
-</html>
+</Layout>
