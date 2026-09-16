@@ -551,7 +551,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
     }
-
 /* =====================================================
    NETLIFY FORM SUBMISSION
 ===================================================== */
@@ -563,8 +562,7 @@ if (auditForm) {
         async (event) => {
 
             /*
-               Prevent normal browser form submission.
-               We will send the form to Netlify using fetch.
+               Prevent normal browser navigation.
             */
             event.preventDefault();
 
@@ -620,10 +618,6 @@ if (auditForm) {
             const formData =
                 new FormData(auditForm);
 
-            /*
-               Make sure Netlify knows which form
-               is being submitted.
-            */
             formData.set(
                 "form-name",
                 "local-visibility-audit"
@@ -638,22 +632,19 @@ if (auditForm) {
 
                 const response =
                     await fetch(
-                        "/",
+                        window.location.pathname,
                         {
                             method: "POST",
-
-                            /*
-                               Netlify Forms expects
-                               URL-encoded form data.
-                            */
-                            body: new URLSearchParams(
-                                formData
-                            ),
 
                             headers: {
                                 "Content-Type":
                                     "application/x-www-form-urlencoded"
-                            }
+                            },
+
+                            body:
+                                new URLSearchParams(
+                                    formData
+                                ).toString()
                         }
                     );
 
@@ -661,14 +652,14 @@ if (auditForm) {
                 if (!response.ok) {
 
                     throw new Error(
-                        "Netlify form submission failed"
+                        `Netlify returned ${response.status}`
                     );
 
                 }
 
 
                 /* =========================================
-                   SUCCESS UI
+                   SUCCESS
                 ========================================= */
 
                 const firstName =
@@ -686,10 +677,6 @@ if (auditForm) {
                 }
 
 
-                /*
-                   Hide the form and show
-                   the success message.
-                */
                 auditForm.hidden = true;
 
                 formSuccess.hidden = false;
@@ -719,7 +706,7 @@ if (auditForm) {
 
 
                 /* =========================================
-                   SCROLL TO SUCCESS MESSAGE
+                   SCROLL TO SUCCESS
                 ========================================= */
 
                 formSuccess.scrollIntoView({
@@ -776,7 +763,6 @@ if (auditForm) {
     );
 
 }
-
     /* =====================================================
        RESET SUCCESS STATE
     ===================================================== */
