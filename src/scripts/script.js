@@ -632,7 +632,7 @@ if (auditForm) {
 
                 const response =
                     await fetch(
-                        window.location.pathname,
+                        "/",
                         {
                             method: "POST",
 
