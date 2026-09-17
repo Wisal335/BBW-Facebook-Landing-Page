@@ -2,11 +2,12 @@
   "name": "big-brain-way-facebook-landing-page",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "astro dev",
     "build": "astro build",
+    "start": "node server.js",
     "preview": "astro preview"
   },
   "keywords": [],

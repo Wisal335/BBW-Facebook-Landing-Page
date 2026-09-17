@@ -5,7 +5,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-
     /* =====================================================
        ELEMENTS
     ===================================================== */
@@ -416,6 +415,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     valid = false;
 
+                    markInvalid(field);
+
                     if (!firstInvalid) {
                         firstInvalid = field;
                     }
@@ -528,6 +529,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 );
 
+
                 input.addEventListener(
                     "change",
                     () => {
@@ -551,218 +553,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
     }
-/* =====================================================
-   NETLIFY FORM SUBMISSION
-===================================================== */
 
-if (auditForm) {
 
-    auditForm.addEventListener(
-        "submit",
-        async (event) => {
-
-            /*
-               Prevent normal browser navigation.
-            */
-            event.preventDefault();
-
-
-            /* =============================================
-               NETLIFY HONEYPOT
-            ============================================= */
-
-            const honeypot =
-                document.getElementById("bot-field");
-
-            if (
-                honeypot &&
-                honeypot.value.trim() !== ""
-            ) {
-                return;
-            }
-
-
-            /* =============================================
-               VALIDATE FORM
-            ============================================= */
-
-            if (!validateForm()) {
-                return;
-            }
-
-
-            /* =============================================
-               LOADING STATE
-            ============================================= */
-
-            const submitText =
-                formSubmit?.querySelector(
-                    ".submit-text"
-                );
-
-            if (formSubmit) {
-                formSubmit.classList.add("loading");
-                formSubmit.disabled = true;
-            }
-
-            if (submitText) {
-                submitText.textContent =
-                    "Submitting...";
-            }
-
-
-            /* =============================================
-               PREPARE FORM DATA
-            ============================================= */
-
-            const formData =
-                new FormData(auditForm);
-
-            formData.set(
-                "form-name",
-                "Local-Visibility-Audit"
-            );
-
-
-            /* =============================================
-               SUBMIT TO NETLIFY
-            ============================================= */
-
-            try {
-
-                const response =
-                    await fetch(
-                        "/",
-                        {
-                            method: "POST",
-
-                            headers: {
-                                "Content-Type":
-                                    "application/x-www-form-urlencoded"
-                            },
-
-                            body:
-                                new URLSearchParams(
-                                    formData
-                                ).toString()
-                        }
-                    );
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        `Netlify returned ${response.status}`
-                    );
-
-                }
-
-
-                /* =========================================
-                   SUCCESS
-                ========================================= */
-
-                const firstName =
-                    document.getElementById(
-                        "firstName"
-                    );
-
-
-                if (successName) {
-
-                    successName.textContent =
-                        firstName?.value.trim() ||
-                        "there";
-
-                }
-
-
-                auditForm.hidden = true;
-
-                formSuccess.hidden = false;
-
-
-                /* =========================================
-                   RESET BUTTON STATE
-                ========================================= */
-
-                if (formSubmit) {
-
-                    formSubmit.classList.remove(
-                        "loading"
-                    );
-
-                    formSubmit.disabled = false;
-
-                }
-
-
-                if (submitText) {
-
-                    submitText.textContent =
-                        "Request My Free Audit";
-
-                }
-
-
-                /* =========================================
-                   SCROLL TO SUCCESS
-                ========================================= */
-
-                formSuccess.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
-
-
-            } catch (error) {
-
-                console.error(
-                    "Netlify form submission error:",
-                    error
-                );
-
-
-                /* =========================================
-                   SHOW ERROR
-                ========================================= */
-
-                if (formError) {
-
-                    formError.textContent =
-                        "We could not send your request right now. Please try again.";
-
-                }
-
-
-                /* =========================================
-                   RESTORE BUTTON
-                ========================================= */
-
-                if (formSubmit) {
-
-                    formSubmit.classList.remove(
-                        "loading"
-                    );
-
-                    formSubmit.disabled = false;
-
-                }
-
-
-                if (submitText) {
-
-                    submitText.textContent =
-                        "Request My Free Audit";
-
-                }
-
-            }
-
-        }
-    );
-
-}
     /* =====================================================
        RESET SUCCESS STATE
     ===================================================== */
@@ -834,7 +626,7 @@ if (auditForm) {
 
     /* =====================================================
        HERO PARALLAX
-       
+
        Subtle living interaction for desktop.
     ===================================================== */
 
@@ -951,6 +743,5 @@ if (auditForm) {
 
         }
     );
-
 
 });
