@@ -6,6 +6,15 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================================
+       FACEBOOK GOOGLE APPS SCRIPT
+       This endpoint belongs ONLY to Facebook.
+    ===================================================== */
+
+    const FACEBOOK_GOOGLE_APPS_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbzlzaukquVLoaQJlkAUXOVIFjGzPNmnPEOA61NfBgaUoi9UrAy39z3gis8iAde3Fl2O/exec";
+
+
+    /* =====================================================
        ELEMENTS
     ===================================================== */
 
@@ -43,7 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updateScrollProgress = () => {
 
-        if (!scrollProgress) return;
+        if (!scrollProgress) {
+            return;
+        }
 
         const scrollTop =
             window.scrollY;
@@ -57,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
             scrollProgress.style.width = "0%";
 
             return;
-
         }
 
         const percentage =
@@ -65,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         scrollProgress.style.width =
             `${Math.min(percentage, 100)}%`;
-
     };
 
 
@@ -84,7 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updateBackToTop = () => {
 
-        if (!backToTop) return;
+        if (!backToTop) {
+            return;
+        }
 
         if (window.scrollY > 700) {
 
@@ -95,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
             backToTop.classList.remove("visible");
 
         }
-
     };
 
 
@@ -152,7 +162,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             targetId
                         );
 
-                    if (!target) return;
+                    if (!target) {
+                        return;
+                    }
 
                     event.preventDefault();
 
@@ -299,7 +311,11 @@ document.addEventListener("DOMContentLoaded", () => {
        MINIMUM DATE
     ===================================================== */
 
-    if (preferredDate) {
+    const setMinimumDate = () => {
+
+        if (!preferredDate) {
+            return;
+        }
 
         const today =
             new Date();
@@ -317,11 +333,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 today.getDate()
             ).padStart(2, "0");
 
-
         preferredDate.min =
             `${year}-${month}-${day}`;
+    };
 
-    }
+
+    setMinimumDate();
 
 
     /* =====================================================
@@ -366,7 +383,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const markInvalid = (input) => {
 
-        if (!input) return;
+        if (!input) {
+            return;
+        }
 
         const field =
             input.closest(".form-field");
@@ -406,7 +425,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     fieldName
                 );
 
-            if (!field) return;
+            if (!field) {
+                return;
+            }
 
 
             if (field.type === "checkbox") {
@@ -424,7 +445,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 return;
-
             }
 
 
@@ -458,9 +478,7 @@ document.addEventListener("DOMContentLoaded", () => {
             markInvalid(email);
 
             if (!firstInvalid) {
-
                 firstInvalid = email;
-
             }
 
         }
@@ -556,6 +574,259 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
+       FORM SUBMISSION
+       FACEBOOK → GOOGLE APPS SCRIPT → GOOGLE SHEETS
+    ===================================================== */
+
+    if (auditForm) {
+
+        auditForm.addEventListener(
+            "submit",
+            async (event) => {
+
+                event.preventDefault();
+
+                clearFormError();
+
+
+                /* -----------------------------------------
+                   VALIDATE
+                ----------------------------------------- */
+
+                if (!validateForm()) {
+                    return;
+                }
+
+
+                /* -----------------------------------------
+                   BUTTON LOADING STATE
+                   Keep the arrow span intact.
+                ----------------------------------------- */
+
+                if (formSubmit) {
+
+                    formSubmit.disabled = true;
+
+                    const submitText =
+                        formSubmit.querySelector(
+                            ".submit-text"
+                        );
+
+                    if (submitText) {
+
+                        submitText.textContent =
+                            "Sending Request...";
+
+                    }
+
+                }
+
+
+                try {
+
+                    /* -------------------------------------
+                       COLLECT FORM DATA
+                    ------------------------------------- */
+
+                    const data = {
+
+                        firstName:
+                            document
+                                .getElementById("firstName")
+                                .value
+                                .trim(),
+
+                        lastName:
+                            document
+                                .getElementById("lastName")
+                                .value
+                                .trim(),
+
+                        business:
+                            document
+                                .getElementById("business")
+                                .value
+                                .trim(),
+
+                        email:
+                            document
+                                .getElementById("email")
+                                .value
+                                .trim(),
+
+                        phone:
+                            document
+                                .getElementById("phone")
+                                .value
+                                .trim(),
+
+                        website:
+                            document
+                                .getElementById("website")
+                                .value
+                                .trim(),
+
+                        service:
+                            document
+                                .getElementById("service")
+                                .value,
+
+                        serviceArea:
+                            document
+                                .getElementById("serviceArea")
+                                .value
+                                .trim(),
+
+                        preferredDate:
+                            document
+                                .getElementById("preferredDate")
+                                .value,
+
+                        preferredTime:
+                            document
+                                .getElementById("preferredTime")
+                                .value,
+
+                        consent:
+                            document
+                                .getElementById("consent")
+                                .checked
+                                ? "Yes"
+                                : "No",
+
+                        source:
+                            "Facebook"
+
+                    };
+
+
+                    /* -------------------------------------
+                       SEND TO FACEBOOK APPS SCRIPT
+                    ------------------------------------- */
+
+                    const response =
+                        await fetch(
+                            FACEBOOK_GOOGLE_APPS_SCRIPT_URL,
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "text/plain;charset=utf-8"
+                                },
+
+                                body:
+                                    JSON.stringify(data)
+                            }
+                        );
+
+
+                    /* -------------------------------------
+                       READ RESPONSE
+                    ------------------------------------- */
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            `Server returned HTTP ${response.status}.`
+                        );
+
+                    }
+
+
+                    const result =
+                        await response.json();
+
+
+                    /* -------------------------------------
+                       CHECK APPS SCRIPT RESULT
+                    ------------------------------------- */
+
+                    if (!result.success) {
+
+                        throw new Error(
+                            result.error ||
+                            "Submission failed."
+                        );
+
+                    }
+
+
+                    /* -------------------------------------
+                       SUCCESS STATE
+                    ------------------------------------- */
+
+                    if (successName) {
+
+                        successName.textContent =
+                            data.firstName;
+
+                    }
+
+
+                    auditForm.hidden = true;
+
+
+                    if (formSuccess) {
+
+                        formSuccess.hidden = false;
+
+                    }
+
+
+                    auditForm.reset();
+
+                    setMinimumDate();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Facebook form submission error:",
+                        error
+                    );
+
+
+                    if (formError) {
+
+                        formError.textContent =
+                            "Something went wrong while sending your request. Please try again.";
+
+                    }
+
+                } finally {
+
+                    /* -------------------------------------
+                       RESTORE BUTTON
+                    ------------------------------------- */
+
+                    if (formSubmit) {
+
+                        formSubmit.disabled = false;
+
+                        const submitText =
+                            formSubmit.querySelector(
+                                ".submit-text"
+                            );
+
+                        if (submitText) {
+
+                            submitText.textContent =
+                                "Request My Free Audit";
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
        RESET SUCCESS STATE
     ===================================================== */
 
@@ -565,7 +836,10 @@ document.addEventListener("DOMContentLoaded", () => {
             "click",
             () => {
 
-                if (!auditForm || !formSuccess) {
+                if (
+                    !auditForm ||
+                    !formSuccess
+                ) {
                     return;
                 }
 
@@ -579,35 +853,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 clearFormError();
 
-
-                if (preferredDate) {
-
-                    const today =
-                        new Date();
-
-                    const year =
-                        today.getFullYear();
-
-                    const month =
-                        String(
-                            today.getMonth() + 1
-                        ).padStart(2, "0");
-
-                    const day =
-                        String(
-                            today.getDate()
-                        ).padStart(2, "0");
-
-                    preferredDate.min =
-                        `${year}-${month}-${day}`;
-
-                }
+                setMinimumDate();
 
 
                 const booking =
                     document.getElementById(
                         "booking"
                     );
+
 
                 if (booking) {
 
@@ -626,8 +879,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================================
        HERO PARALLAX
-
-       Subtle living interaction for desktop.
+       Desktop only.
     ===================================================== */
 
     const heroVisual =
