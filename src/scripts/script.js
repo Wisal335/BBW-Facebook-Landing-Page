@@ -1,6 +1,6 @@
 /* =========================================================
    BIG BRAIN WAY
-   FACEBOOK — LOCAL TRUST & PROOF
+   FACEBOOK - LOCAL TRUST & PROOF
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -961,6 +961,147 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         );
 
+    }
+
+
+    /* =====================================================
+       MOBILE CARD FLIP + KEYBOARD SUPPORT
+    ===================================================== */
+
+    problemCards.forEach((card) => {
+        const toggleCard = () => {
+            const flipped = card.classList.toggle("is-flipped");
+            card.setAttribute("aria-expanded", String(flipped));
+        };
+
+        card.addEventListener("click", (event) => {
+            if (event.target.closest("a, button, input, select")) return;
+            toggleCard();
+        });
+
+        card.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                toggleCard();
+            }
+        });
+    });
+
+
+    /* =====================================================
+       DYNAMIC LOCAL SEARCH LOOP
+    ===================================================== */
+
+    const locationQuery = document.getElementById("locationQuery");
+    const mapLocationLabel = document.getElementById("mapLocationLabel");
+    const locationListings = document.querySelectorAll("[data-location-listing]");
+
+    const locationScenes = [
+        {
+            query: "best med spa near me",
+            label: "MED SPA - LOCAL SEARCH",
+            names: ["Glowline Med Spa", "Northstar Aesthetics", "Renew Skin Studio"],
+            category: "Med Spa"
+        },
+        {
+            query: "best restaurants near me",
+            label: "RESTAURANTS - LOCAL SEARCH",
+            names: ["Market Table Kitchen", "Northside Grill", "Harbor House"],
+            category: "Restaurant"
+        },
+        {
+            query: "best hotels near me",
+            label: "HOTELS - LOCAL SEARCH",
+            names: ["The Local House Hotel", "North Park Suites", "Riverside Hotel"],
+            category: "Hotel"
+        },
+        {
+            query: "best contractors near me",
+            label: "CONTRACTORS - LOCAL SEARCH",
+            names: ["Summit Home Services", "North Ridge Roofing", "BluePeak Local Agency"],
+            category: "Local Service"
+        }
+    ];
+
+    let locationIndex = 0;
+    const updateLocationScene = () => {
+        const scene = locationScenes[locationIndex];
+        if (locationQuery) locationQuery.textContent = scene.query;
+        if (mapLocationLabel) mapLocationLabel.textContent = scene.label;
+
+        locationListings.forEach((listing, index) => {
+            const name = listing.querySelector(".listing-top strong");
+            const category = listing.querySelector(".listing-category");
+            if (name) name.textContent = scene.names[index] || scene.names[0];
+            if (category) category.textContent = scene.category;
+        });
+
+        locationListings.forEach((listing) => listing.classList.remove("active"));
+        if (locationListings[locationIndex % locationListings.length]) {
+            locationListings[locationIndex % locationListings.length].classList.add("active");
+        }
+        locationIndex = (locationIndex + 1) % locationScenes.length;
+    };
+
+    updateLocationScene();
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        window.setInterval(updateLocationScene, 3600);
+    }
+
+
+    /* =====================================================
+       PROGRESSIVE BLUEPRINT STEPS
+    ===================================================== */
+
+    const blueprintSteps = document.querySelectorAll(".blueprint-step");
+    if ("IntersectionObserver" in window && blueprintSteps.length) {
+        const blueprintObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) entry.target.classList.add("is-active");
+            });
+        }, { threshold: 0.35 });
+        blueprintSteps.forEach((step) => blueprintObserver.observe(step));
+    } else {
+        blueprintSteps.forEach((step) => step.classList.add("is-active"));
+    }
+
+
+    /* =====================================================
+       TESTIMONIAL SLIDER
+    ===================================================== */
+
+    const testimonialSlider = document.getElementById("testimonialSlider");
+    if (testimonialSlider) {
+        const track = testimonialSlider.querySelector(".testimonial-track");
+        const slides = [...testimonialSlider.querySelectorAll(".testimonial-slide")];
+        const dots = [...testimonialSlider.querySelectorAll(".testimonial-dots button")];
+        const previous = testimonialSlider.querySelector(".testimonial-prev");
+        const next = testimonialSlider.querySelector(".testimonial-next");
+        let current = 0;
+        let timer = null;
+
+        const showSlide = (index) => {
+            current = (index + slides.length) % slides.length;
+            if (track) track.style.transform = `translateX(-${current * 100}%)`;
+            slides.forEach((slide, i) => slide.classList.toggle("is-active", i === current));
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("is-active", i === current);
+                dot.setAttribute("aria-selected", String(i === current));
+            });
+        };
+
+        const restart = () => {
+            if (timer) window.clearInterval(timer);
+            if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                timer = window.setInterval(() => showSlide(current + 1), 4500);
+            }
+        };
+
+        previous?.addEventListener("click", () => { showSlide(current - 1); restart(); });
+        next?.addEventListener("click", () => { showSlide(current + 1); restart(); });
+        dots.forEach((dot, i) => dot.addEventListener("click", () => { showSlide(i); restart(); }));
+        showSlide(0);
+        restart();
     }
 
 

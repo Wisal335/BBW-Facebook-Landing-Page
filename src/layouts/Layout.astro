@@ -1,20 +1,18 @@
 ---
-const { title = "Big Brain Way" } = Astro.props;
+const { title = "Big Brain Way", description = "AI and local visibility for local businesses." } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content={description}>
+    <meta name="theme-color" content="#030812">
     <title>{title}</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     
 </head>
-
 <body>
     <slot />
 </body>

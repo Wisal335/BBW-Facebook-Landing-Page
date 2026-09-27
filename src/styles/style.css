@@ -1,6 +1,6 @@
 /* =========================================================
    BIG BRAIN WAY
-   FACEBOOK — LOCAL TRUST & PROOF
+   FACEBOOK - LOCAL TRUST & PROOF
    ========================================================= */
 
 
@@ -5622,4 +5622,123 @@ select:focus-visible {
 
     }
 
+}
+
+/* =========================================================
+   SCRUM REVISION - FACEBOOK LANDING PAGE
+   ========================================================= */
+
+body { font-size: 16px; }
+.site-header { position: sticky; top: 0; }
+.header-inner { min-height: 68px; }
+.header-status, .header-cta { font-size: 13px; }
+.section { padding: 88px 0; }
+.section-heading.centered { margin-bottom: 48px; }
+.section-kicker { font-size: 12px; margin-bottom: 12px; }
+.section-heading p, .hero-description { font-size: 18px; line-height: 1.7; }
+.hero-section { padding: 72px 0 84px; }
+.hero-copy h1 { font-size: clamp(46px, 5.8vw, 76px); }
+.hero-signals { gap: 14px; }
+.signal-item { min-height: 76px; padding: 14px; }
+.signal-icon { width: 42px; height: 42px; display: grid; place-items: center; flex: 0 0 42px; border-radius: 12px; color: var(--cyan); background: rgba(34,211,238,.08); border: 1px solid rgba(34,211,238,.15); }
+.signal-icon svg, .problem-icon svg, .search-symbol svg { width: 24px; height: 24px; }
+.signal-item strong { font-size: 14px; }
+.signal-item > div > span { font-size: 12px; }
+.search-symbol { display: grid; place-items: center; }
+.search-symbol svg { width: 17px; height: 17px; }
+.map-label { font-size: 9px; }
+.local-listing { cursor: pointer; }
+
+/* Interactive problem cards */
+.trust-grid { perspective: 1200px; }
+.problem-card { min-height: 330px; background: transparent; border: 0; padding: 0; cursor: pointer; outline: none; }
+.problem-card-inner { position: relative; width: 100%; height: 100%; min-height: 330px; transform-style: preserve-3d; transition: transform .65s cubic-bezier(.2,.7,.2,1); }
+.problem-card:hover .problem-card-inner, .problem-card.is-flipped .problem-card-inner { transform: rotateY(180deg); }
+.problem-card-face { position: absolute; inset: 0; min-height: 330px; backface-visibility: hidden; border: 1px solid rgba(255,255,255,.1); border-radius: 22px; padding: 26px; background: linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.025)); box-shadow: 0 20px 55px rgba(0,0,0,.22); display: flex; flex-direction: column; align-items: flex-start; }
+.problem-card-face h3 { font-size: 28px; margin: 14px 0 10px; }
+.problem-card-face p { font-size: 16px; line-height: 1.65; color: var(--text-soft); }
+.problem-card-front { justify-content: flex-start; }
+.problem-card-back { transform: rotateY(180deg); justify-content: center; }
+.problem-card-back h3 { color: white; }
+.problem-icon { width: 58px; height: 58px; display: grid; place-items: center; margin-top: 12px; border-radius: 16px; color: var(--cyan); background: rgba(34,211,238,.08); border: 1px solid rgba(34,211,238,.15); }
+.problem-number { font-size: 12px; font-weight: 900; letter-spacing: 1.4px; color: var(--cyan); }
+.card-action { margin-top: auto; color: #7188a2; font-size: 12px; font-weight: 800; }
+.problem-card:focus-visible .problem-card-face { border-color: rgba(34,211,238,.55); box-shadow: 0 0 0 3px rgba(34,211,238,.12); }
+
+/* Progressive blueprint questions */
+.blueprint-question { opacity: .45; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
+.blueprint-step.is-active .blueprint-question { opacity: 1; transform: translateY(0); }
+.blueprint-step { transition: transform .6s ease, opacity .6s ease; }
+.blueprint-step.is-active { transform: translateY(-4px); }
+
+/* Testimonial slider */
+.testimonial-slider { max-width: 860px; margin: 0 auto; overflow: hidden; }
+.testimonial-track { display: flex; transition: transform .65s ease; }
+.testimonial-slide { min-width: 100%; padding: 4px; }
+.testimonial-card { min-height: 360px; }
+.testimonial-card blockquote { font-size: 20px; line-height: 1.7; }
+.testimonial-controls { display: flex; align-items: center; justify-content: center; gap: 22px; margin-top: 22px; }
+.testimonial-controls button { cursor: pointer; }
+.testimonial-prev, .testimonial-next { width: 42px; height: 42px; border-radius: 50%; color: white; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); }
+.testimonial-dots { display: flex; gap: 8px; }
+.testimonial-dots button { width: 8px; height: 8px; padding: 0; border-radius: 50%; background: #5f738c; }
+.testimonial-dots button.is-active { width: 24px; border-radius: 999px; background: var(--cyan); }
+.testimonial-controls button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.proof-editor-note { max-width: 860px; margin: 22px auto 0; font-size: 13px; line-height: 1.6; color: #7f92a8; }
+.proof-editor-note span { color: var(--cyan); font-weight: 800; }
+
+/* Consolidated audit/contact */
+.booking-section { padding-top: 76px; }
+.booking-container { width: min(calc(100% - 48px), 1180px); grid-template-columns: minmax(0, .9fr) minmax(440px, 1fr); gap: 52px; }
+.booking-intro { position: static; }
+.booking-intro h2 { font-size: clamp(36px, 4.2vw, 56px); }
+.booking-intro > p { font-size: 16px; }
+.compact-audit-checklist { margin-top: 24px; display: grid; gap: 14px; }
+.compact-audit-checklist .audit-check { display: grid; grid-template-columns: 30px 1fr; gap: 10px; }
+.compact-audit-checklist .audit-check p { font-size: 13px; }
+.compact-audit-dashboard { margin-top: 28px; }
+.form-field label { font-size: 12px; }
+.form-field input, .form-field select { font-size: 14px; min-height: 50px; }
+.consent-row, .form-disclaimer { font-size: 12px; }
+.form-submit { font-size: 14px; }
+
+/* Reduced vertical density */
+.hero-data-frame { margin-top: 28px; }
+.final-cta { padding-top: 78px; padding-bottom: 78px; }
+
+@media (max-width: 900px) {
+  .hero-container, .booking-container { grid-template-columns: 1fr; }
+  .hero-copy { max-width: none; }
+  .hero-visual { min-height: auto; margin-top: 24px; }
+  .booking-intro { position: static; }
+}
+
+@media (max-width: 700px) {
+  .header-status { display: none; }
+  .header-inner, .section-container, .hero-container, .booking-container { width: min(calc(100% - 32px), var(--container)); }
+  .section { padding: 68px 0; }
+  .hero-section { padding: 54px 0 64px; }
+  .hero-copy h1 { font-size: clamp(42px, 12vw, 62px); letter-spacing: -2.8px; }
+  .hero-description, .section-heading p { font-size: 16px; }
+  .hero-signals { grid-template-columns: 1fr; }
+  .search-interface { transform: none; }
+  .problem-card, .problem-card-inner, .problem-card-face { min-height: 310px; }
+  .problem-card-face { padding: 22px; }
+  .problem-card-face h3 { font-size: 25px; }
+  .problem-card-face p { font-size: 15px; }
+  .testimonial-card blockquote { font-size: 17px; }
+  .booking-container { gap: 30px; }
+  .booking-card { padding: 20px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-field.full { grid-column: auto; }
+  .mobile-sticky-cta { display: flex; }
+}
+
+@media (hover: none) {
+  .problem-card:hover .problem-card-inner { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .problem-card-inner, .testimonial-track, .blueprint-question, .blueprint-step { transition: none; }
+  .background-orb, .visual-glow, .map-pin, .location-pulse, .live-pulse { animation: none !important; }
 }

@@ -133,85 +133,23 @@ import Layout from "../layouts/Layout.astro";
 
             <p class="hero-description">
 
-                If nearby customers cannot quickly find, trust,
-                and choose your business, great service gets
-                overlooked.
+                Great service is not enough if AI search does not
+                recommend you. Customers increasingly ask search
+                engines and AI assistants which local business to choose.
 
                 <strong>
                     &nbsp; Our Local Trust & Proof approach shows where
-                    your local visibility is leaking — and what
-                    to strengthen first.
+                    your visibility is leaking and what to strengthen first.
                 </strong>
 
             </p>
 
 
             <!-- VALUE SIGNALS -->
-
             <div class="hero-signals">
-
-                <div class="signal-item">
-
-                    <span class="signal-icon">
-                        ★
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Review Generation
-                        </strong>
-
-                        <span>
-                            Build stronger customer proof
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="signal-item">
-
-                    <span class="signal-icon">
-                        ◉
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Local Search
-                        </strong>
-
-                        <span>
-                            Strengthen visibility signals
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="signal-item">
-
-                    <span class="signal-icon">
-                        ↗
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Community Proof
-                        </strong>
-
-                        <span>
-                            Turn trust into action
-                        </span>
-
-                    </div>
-
-                </div>
-
+                <div class="signal-item"><span class="signal-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5l2.6 5.25 5.9.86-4.25 4.14 1 5.85L12 16.85 6.75 19.6l1-5.85L3.5 9.61l5.9-.86L12 3.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><div><strong>Reputation Signals</strong><span>Build customer proof</span></div></div>
+                <div class="signal-item"><span class="signal-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5M8.5 11h5M11 8.5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><strong>AI & Local Search</strong><span>Strengthen discovery</span></div></div>
+                <div class="signal-item"><span class="signal-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span><div><strong>Local Trust</strong><span>Turn visibility into action</span></div></div>
             </div>
 
 
@@ -330,13 +268,8 @@ import Layout from "../layouts/Layout.astro";
 
                     <div class="search-pill">
 
-                        <span class="search-symbol">
-                            ⌕
-                        </span>
-
-                        <span>
-                            local service near me
-                        </span>
+                        <span class="search-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+                        <span id="locationQuery">best med spa near me</span>
 
                     </div>
 
@@ -390,7 +323,7 @@ import Layout from "../layouts/Layout.astro";
 
                 <!-- LOCAL 3-PACK -->
 
-                <div class="pack-panel">
+                <div class="pack-panel" id="localSearchPack">
 
                     <div class="pack-heading">
 
@@ -416,7 +349,7 @@ import Layout from "../layouts/Layout.astro";
 
                     <!-- LISTING 1 -->
 
-                    <article class="local-listing active">
+                    <article class="local-listing active" data-location-listing="0">
 
                         <div class="listing-rank">
                             1
@@ -476,7 +409,7 @@ import Layout from "../layouts/Layout.astro";
 
                     <!-- LISTING 2 -->
 
-                    <article class="local-listing">
+                    <article class="local-listing" data-location-listing="1">
 
                         <div class="listing-rank">
                             2
@@ -532,7 +465,7 @@ import Layout from "../layouts/Layout.astro";
 
                     <!-- LISTING 3 -->
 
-                    <article class="local-listing">
+                    <article class="local-listing" data-location-listing="2">
 
                         <div class="listing-rank">
                             3
@@ -587,7 +520,7 @@ import Layout from "../layouts/Layout.astro";
 
 
                     <div class="mockup-disclaimer">
-                        Illustrative example — not an actual Google ranking.
+                        Illustrative example - not an actual Google ranking.
                     </div>
 
                 </div>
@@ -671,87 +604,9 @@ import Layout from "../layouts/Layout.astro";
 
 
         <div class="trust-grid">
-
-            <article class="problem-card reveal">
-
-                <span class="problem-number">
-                    01
-                </span>
-
-                <div class="problem-icon">
-                    ◌
-                </div>
-
-                <h3>
-                    Invisible
-                </h3>
-
-                <p>
-                    Your business may serve the area well, but
-                    weak local visibility makes it harder for
-                    nearby customers to discover you.
-                </p>
-
-                <span class="problem-tag">
-                    VISIBILITY
-                </span>
-
-            </article>
-
-
-            <article class="problem-card reveal">
-
-                <span class="problem-number">
-                    02
-                </span>
-
-                <div class="problem-icon">
-                    ★
-                </div>
-
-                <h3>
-                    Unconvincing
-                </h3>
-
-                <p>
-                    A customer sees several options. If one
-                    business has stronger review proof, the
-                    decision can happen before you ever get the call.
-                </p>
-
-                <span class="problem-tag">
-                    REPUTATION
-                </span>
-
-            </article>
-
-
-            <article class="problem-card reveal">
-
-                <span class="problem-number">
-                    03
-                </span>
-
-                <div class="problem-icon">
-                    ⇄
-                </div>
-
-                <h3>
-                    Inconsistent
-                </h3>
-
-                <p>
-                    Inconsistent business information and weak
-                    local signals can create friction between
-                    discovery and conversion.
-                </p>
-
-                <span class="problem-tag">
-                    TRUST
-                </span>
-
-            </article>
-
+            <article class="problem-card reveal" tabindex="0" role="button" aria-expanded="false"><div class="problem-card-inner"><div class="problem-card-face problem-card-front"><span class="problem-number">01</span><div class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18.5V8.5l8-4 8 4v10" stroke="currentColor" stroke-width="1.8"/><path d="M8 18.5v-6h8v6M6 20h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><h3>Invisible</h3><p>AI and local search may not surface your business when nearby customers ask for what you offer.</p><span class="problem-tag">VISIBILITY</span><span class="card-action">Hover or tap to see the signal</span></div><div class="problem-card-face problem-card-back"><span class="problem-number">01</span><h3>What to strengthen</h3><p>Business profile completeness, local relevance, category signals, service coverage and clear location information.</p><span class="problem-tag">LOCAL SIGNALS</span></div></div></article>
+            <article class="problem-card reveal" tabindex="0" role="button" aria-expanded="false"><div class="problem-card-inner"><div class="problem-card-face problem-card-front"><span class="problem-number">02</span><div class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z" stroke="currentColor" stroke-width="1.8"/></svg></div><h3>Unconvincing</h3><p>Customers compare options quickly. Weak or outdated proof can make another local business easier to trust.</p><span class="problem-tag">REPUTATION</span><span class="card-action">Hover or tap to see the signal</span></div><div class="problem-card-face problem-card-back"><span class="problem-number">02</span><h3>What to strengthen</h3><p>Review quality, recency, volume, response signals and proof that reflects the customer experience.</p><span class="problem-tag">LOCAL SIGNALS</span></div></div></article>
+            <article class="problem-card reveal" tabindex="0" role="button" aria-expanded="false"><div class="problem-card-inner"><div class="problem-card-face problem-card-front"><span class="problem-number">03</span><div class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h10M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="18" cy="12" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg></div><h3>Inconsistent</h3><p>Conflicting business information creates friction between discovery, trust and the next customer action.</p><span class="problem-tag">CONSISTENCY</span><span class="card-action">Hover or tap to see the signal</span></div><div class="problem-card-face problem-card-back"><span class="problem-number">03</span><h3>What to strengthen</h3><p>Business name, address, phone, service details and location signals should tell the same story everywhere.</p><span class="problem-tag">LOCAL SIGNALS</span></div></div></article>
         </div>
 
     </div>
@@ -789,9 +644,9 @@ import Layout from "../layouts/Layout.astro";
                 </h2>
 
                 <p>
-                    We look beyond a single review score and
-                    examine the local discovery journey as a
-                    connected system.
+                    We focus on the signals customers and AI systems actually
+                    use: discoverability, reputation, consistency and
+                    a clear path to contact.
                 </p>
 
             </div>
@@ -828,9 +683,7 @@ import Layout from "../layouts/Layout.astro";
                         DISCOVER
                     </span>
 
-                    <h3>
-                        Can nearby customers find you?
-                    </h3>
+                    <h3 class="blueprint-question">Can nearby customers find you?</h3>
 
                     <p>
                         We inspect the local search signals that
@@ -896,9 +749,7 @@ import Layout from "../layouts/Layout.astro";
                         STRENGTHEN
                     </span>
 
-                    <h3>
-                        Does your reputation support the click?
-                    </h3>
+                    <h3 class="blueprint-question">Does your reputation support the click?</h3>
 
                     <p>
                         Reviews are not simply a number. Recency,
@@ -965,9 +816,7 @@ import Layout from "../layouts/Layout.astro";
                         CONVERT
                     </span>
 
-                    <h3>
-                        Does the proof make choosing you easier?
-                    </h3>
+                    <h3 class="blueprint-question">Does the proof make choosing you easier?</h3>
 
                     <p>
                         The final step connects visibility and
@@ -1068,503 +917,12 @@ import Layout from "../layouts/Layout.astro";
         </div>
 
 
-        <div class="testimonial-grid">
-
-
-            <!-- TESTIMONIAL 1 -->
-
-            <article class="testimonial-card reveal">
-
-                <div class="testimonial-top">
-
-                    <div class="testimonial-stars">
-                        ★★★★★
-                    </div>
-
-                    <span class="proof-label">
-                        VERIFIED PROOF SLOT
-                    </span>
-
-                </div>
-
-
-                <blockquote>
-                    “Use this space for a verified client story
-                    describing how stronger local visibility or
-                    review proof changed their customer journey.”
-                </blockquote>
-
-
-                <div class="testimonial-author">
-
-                    <div class="author-avatar">
-                        C
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Client Story
-                        </strong>
-
-                        <span>
-                            Contractor / Local Service Business
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="testimonial-data">
-
-                    <span>
-                        Review signal
-                    </span>
-
-                    <strong>
-                        5.0 ★
-                    </strong>
-
-                </div>
-
-            </article>
-
-
-            <!-- TESTIMONIAL 2 -->
-
-            <article class="testimonial-card featured reveal">
-
-                <div class="testimonial-top">
-
-                    <div class="testimonial-stars">
-                        ★★★★★
-                    </div>
-
-                    <span class="proof-label">
-                        SOCIAL PROOF
-                    </span>
-
-                </div>
-
-
-                <blockquote>
-                    “Replace this illustrative quote with an approved
-                    customer testimonial about trust, reputation,
-                    search visibility or lead quality.”
-                </blockquote>
-
-
-                <div class="testimonial-author">
-
-                    <div class="author-avatar">
-                        A
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Client Story
-                        </strong>
-
-                        <span>
-                            Local Agency / SMB
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="testimonial-data">
-
-                    <span>
-                        Trust signal
-                    </span>
-
-                    <strong>
-                        ★★★★★
-                    </strong>
-
-                </div>
-
-            </article>
-
-
-            <!-- TESTIMONIAL 3 -->
-
-            <article class="testimonial-card reveal">
-
-                <div class="testimonial-top">
-
-                    <div class="testimonial-stars">
-                        ★★★★★
-                    </div>
-
-                    <span class="proof-label">
-                        PROOF SLOT
-                    </span>
-
-                </div>
-
-
-                <blockquote>
-                    “Use a real customer story here to demonstrate
-                    the practical business value created by a
-                    stronger local reputation.”
-                </blockquote>
-
-
-                <div class="testimonial-author">
-
-                    <div class="author-avatar">
-                        S
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Client Story
-                        </strong>
-
-                        <span>
-                            Service Business
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="testimonial-data">
-
-                    <span>
-                        Customer proof
-                    </span>
-
-                    <strong>
-                        5-Star
-                    </strong>
-
-                </div>
-
-            </article>
-
-        </div>
-
-
-        <p class="proof-editor-note reveal">
-
-            <span>Editorial note: </span>
-
-            Replace these illustrative proof blocks with approved,
-            verified client testimonials before publishing.
-
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     AUDIT FRAME
-========================================================= -->
-
-<section
-    class="audit-section section"
-    aria-labelledby="audit-title"
->
-
-    <div class="section-container">
-
-        <div class="audit-layout">
-
-
-            <div class="audit-copy reveal">
-
-                <span class="section-kicker">
-                    FREE LOCAL VISIBILITY & SEARCH AUDIT
-                </span>
-
-
-                <h2 id="audit-title">
-
-                    See What Customers See
-
-                    <span class="gradient-text">
-                        &nbsp;Before They Choose.
-                    </span>
-
-                </h2>
-
-
-                <p>
-                    The audit is designed to identify the local
-                    visibility and trust signals that deserve
-                    attention first.
-                </p>
-
-
-                <div class="audit-checklist">
-
-
-                    <div class="audit-check">
-
-                        <span>✓</span>
-
-                        <div>
-
-                            <strong>
-                                Local Search Presence
-                            </strong>
-
-                            <p>
-                                Identify visibility opportunities
-                                across local discovery.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="audit-check">
-
-                        <span>✓</span>
-
-                        <div>
-
-                            <strong>
-                                Reputation Signals
-                            </strong>
-
-                            <p>
-                                Review rating, volume, recency and
-                                response patterns.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="audit-check">
-
-                        <span>✓</span>
-
-                        <div>
-
-                            <strong>
-                                Trust & Conversion
-                            </strong>
-
-                            <p>
-                                Examine whether your proof makes
-                                the next customer action obvious.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="audit-check">
-
-                        <span>✓</span>
-
-                        <div>
-
-                            <strong>
-                                Competitive Context
-                            </strong>
-
-                            <p>
-                                Understand what nearby customers
-                                encounter when comparing options.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <!-- DATA STORY PANEL -->
-
-            <div class="audit-dashboard reveal">
-
-                <div class="dashboard-header">
-
-                    <div>
-
-                        <span>
-                            AUDIT SIGNAL FRAME
-                        </span>
-
-                        <strong>
-                            Local Trust Snapshot
-                        </strong>
-
-                    </div>
-
-
-                    <span class="dashboard-live">
-                        ● ANALYZING
-                    </span>
-
-                </div>
-
-
-                <div class="dashboard-score">
-
-                    <div class="score-ring">
-
-                        <div class="score-ring-inner">
-
-                            <strong>
-                                ?
-                            </strong>
-
-                            <span>
-                                SCORE
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="score-copy">
-
-                        <span>
-                            Your current local trust picture
-                        </span>
-
-                        <strong>
-                            Start with the data.
-                        </strong>
-
-                        <p>
-                            A visibility audit turns scattered
-                            signals into a practical priority map.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="dashboard-bars">
-
-
-                    <div class="dashboard-bar">
-
-                        <div>
-
-                            <span>
-                                Search visibility
-                            </span>
-
-                            <strong>
-                                Audit
-                            </strong>
-
-                        </div>
-
-                        <div class="bar-track">
-                            <span style="width: 72%;"></span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="dashboard-bar">
-
-                        <div>
-
-                            <span>
-                                Review proof
-                            </span>
-
-                            <strong>
-                                Audit
-                            </strong>
-
-                        </div>
-
-                        <div class="bar-track">
-                            <span style="width: 86%;"></span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="dashboard-bar">
-
-                        <div>
-
-                            <span>
-                                Local consistency
-                            </span>
-
-                            <strong>
-                                Audit
-                            </strong>
-
-                        </div>
-
-                        <div class="bar-track">
-                            <span style="width: 58%;"></span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="dashboard-bar">
-
-                        <div>
-
-                            <span>
-                                Conversion trust
-                            </span>
-
-                            <strong>
-                                Audit
-                            </strong>
-
-                        </div>
-
-                        <div class="bar-track">
-                            <span style="width: 67%;"></span>
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-
-                <div class="dashboard-footer">
-
-                    <span>
-                        Illustrative data frame
-                    </span>
-
-                    <span>
-                        ● Ready for audit
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
+        <div class="testimonial-slider" id="testimonialSlider" aria-live="polite"><div class="testimonial-track">
+            <article class="testimonial-slide is-active"><div class="testimonial-card featured"><div class="testimonial-top"><div class="testimonial-stars">★★★★★</div><span class="proof-label">DIANA REVIEW - PENDING APPROVAL</span></div><blockquote>Approved Diana customer review text should be inserted after coordination with Eman. The supplied meeting notes identify Diana as the AI-search discovery testimonial, but do not contain the approved wording.</blockquote><div class="testimonial-author"><div class="author-avatar">D</div><div><strong>Diana</strong><span>AI-search discovery story</span></div></div></div></article>
+            <article class="testimonial-slide"><div class="testimonial-card"><div class="testimonial-top"><div class="testimonial-stars">★★★★★</div><span class="proof-label">CLIENT STORY SLOT</span></div><blockquote>Insert an approved customer review here before publishing. Illustrative copy should not be presented as a testimonial.</blockquote><div class="testimonial-author"><div class="author-avatar">C</div><div><strong>Client testimonial</strong><span>Awaiting approved source text</span></div></div></div></article>
+            <article class="testimonial-slide"><div class="testimonial-card"><div class="testimonial-top"><div class="testimonial-stars">★★★★★</div><span class="proof-label">CLIENT STORY SLOT</span></div><blockquote>Insert another approved customer review here before publishing, tied to a real customer experience.</blockquote><div class="testimonial-author"><div class="author-avatar">C</div><div><strong>Client testimonial</strong><span>Awaiting approved source text</span></div></div></div></article>
+        </div><div class="testimonial-controls"><button type="button" class="testimonial-prev" aria-label="Previous testimonial">←</button><div class="testimonial-dots" role="tablist" aria-label="Testimonials"><button type="button" class="is-active" aria-label="Testimonial 1" aria-selected="true"></button><button type="button" aria-label="Testimonial 2" aria-selected="false"></button><button type="button" aria-label="Testimonial 3" aria-selected="false"></button></div><button type="button" class="testimonial-next" aria-label="Next testimonial">→</button></div></div>
+        <p class="proof-editor-note reveal"><span>Content note:</span> The Scrum notes require real customer testimonials and an approved Diana AI-search review. The actual approved quote was not included in the supplied project or notes, so it has not been invented.</p>
     </div>
 
 </section>
@@ -1583,50 +941,8 @@ import Layout from "../layouts/Layout.astro";
     <div class="booking-container">
 
 
-        <!-- BOOKING INTRO -->
-
-        <div class="booking-intro reveal">
-
-            <span class="section-kicker">
-                TAKE THE NEXT STEP
-            </span>
-
-
-            <h2 id="booking-title">
-
-                Find Out Where Your
-
-                <span class="gradient-text">
-                    &nbsp;Local Trust Is Leaking.
-                </span>
-
-            </h2>
-
-
-            <p>
-                Request your free Local Visibility & Search Audit.
-                Tell us a little about your business and choose
-                a preferred time for the conversation.
-            </p>
-
-
-            <div class="booking-guarantees">
-
-                <span>
-                    ✓ Free
-                </span>
-
-                <span>
-                    ✓ No obligation
-                </span>
-
-                <span>
-                    ✓ Local visibility focused
-                </span>
-
-            </div>
-
-        </div>
+        <!-- AUDIT + CONTACT, CONSOLIDATED -->
+        <div class="booking-intro reveal"><span class="section-kicker">FREE LOCAL VISIBILITY & SEARCH AUDIT</span><h2 id="booking-title">See What Customers See <span class="gradient-text">Before They Choose.</span></h2><p>One streamlined audit and contact step. We look at local search presence, reputation signals, consistency and the path from discovery to action.</p><div class="audit-checklist compact-audit-checklist"><div class="audit-check"><span>✓</span><div><strong>Local Search Presence</strong><p>Where your business appears for high-intent local searches.</p></div></div><div class="audit-check"><span>✓</span><div><strong>Reputation Signals</strong><p>Review quality, recency, volume and response patterns.</p></div></div><div class="audit-check"><span>✓</span><div><strong>Trust & Conversion</strong><p>Whether your proof makes the next action clear.</p></div></div><div class="audit-check"><span>✓</span><div><strong>Competitive Context</strong><p>What nearby customers encounter when comparing options.</p></div></div></div><div class="audit-dashboard compact-audit-dashboard"><div class="dashboard-header"><div><span>AUDIT SIGNAL FRAME</span><strong>Local Trust Snapshot</strong></div><span class="dashboard-live">● READY</span></div><div class="dashboard-score"><div class="score-ring"><div class="score-ring-inner"><strong>?</strong><span>SCORE</span></div></div><div class="score-copy"><span>Your current local trust picture</span><strong>Start with the data.</strong><p>The audit turns scattered signals into a practical priority map.</p></div></div><div class="dashboard-footer"><span>Illustrative frame</span><span>● Audit ready</span></div></div></div>
 
 
         <!-- CUSTOM ON-PAGE FORM -->
@@ -1642,7 +958,7 @@ import Layout from "../layouts/Layout.astro";
                     </span>
 
                     <h3>
-                        Request Your Free Local Visibility Audit
+                        Tell Us Where To Look
                     </h3>
 
                 </div>
@@ -2070,12 +1386,12 @@ import Layout from "../layouts/Layout.astro";
 
 
         <a
-            href="#booking"
+            href="https://bigbrainway.com/contact/"
             class="primary-button large"
         >
 
             <span>
-                Get My Free Local Visibility & Search Audit
+                Talk To Big Brain Way
             </span>
 
             <span
